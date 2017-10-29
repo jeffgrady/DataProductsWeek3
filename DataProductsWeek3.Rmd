@@ -1,0 +1,64 @@
+---
+title: "Data Products Week 2 Assignment"
+author: "Jeff Grady"
+date: "10/23/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Where are the best hot dogs in the Maryland/Virginia/Washington, D.C. area?
+### 2017-10-23
+
+This is a summary of the [Eater best places to eat hot dogs in the Washington, D.C. area](https://dc.eater.com/maps/best-hot-dogs-dc).
+
+```{r, echo=FALSE, message=FALSE}
+library(leaflet)
+df <- data.frame(
+    lat=c(39.1449778,
+          38.8999753,
+          38.9106589,
+          38.8955961,
+          38.9022463,
+          38.8854861,
+          38.8801872,
+          38.8730144,
+          38.8438034,
+          38.8138642,
+          38.9957372
+          ),
+    lng=c(-77.1470025,
+          -76.9946589,
+          -77.0237775,
+          -77.0362147,
+          -77.2669801,
+          -76.9860416,
+          -76.9865678,
+          -77.0096269,
+          -77.0882751,
+          -77.0466434,
+          -77.0269141
+    ),
+    popup=c(
+"<a href='http://greatestamericanhotdogs.com/'>Greatest American Hot Dogs</a>",
+"<a href='http://benschilibowl.com/'>Ben's Chili Bowl</a>",
+"<a href='http://www.ivyandconey.com/'>Ivy and Coney</a>",
+"<a href='http://redapronburgerbar.com'>Red Apron Burger Bar</a>",
+"<a href='http://viennainn.com'>Vienna Inn</a>",
+"<a href='http://thepretzelbakery.com'>The Pretzel Bakery</a>",
+"<a href='http://trustysfullserve.com'>Trusty's</a>",
+"<a href='http://washington.nationals.mlb.com'>Box Frites</a>",
+"<a href='http://weeniebeenie.net'>Weenie Beenie</a>",
+"<a href='http://hautedogsandfries.com'>Haute Dogs and Fries</a>",
+"<a href='http://burgerfi.com'>Burgerfi</a>"
+))
+chiliDogIcon <- makeIcon(iconUrl = "http://www.blogthingsimages.com/whattypeofhotdogareyouquiz/chili-dog.png",
+                         iconWidth = 40,
+                         iconHeight = 40)
+df %>% leaflet() %>% addTiles() %>% 
+    addMarkers(popup=df$popup,
+               icon = chiliDogIcon,
+               clusterOptions = markerClusterOptions())
+```
