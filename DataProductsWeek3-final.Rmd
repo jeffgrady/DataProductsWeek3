@@ -1,15 +1,19 @@
-Data Products Week 3
-========================================================
+---
+title: Data Products Week 3
 author: Jeff Grady 
 date: 2017-11-03
-autosize: true
+output: ioslides_presentation
+---
 
-Regression Models Course Project
-========================================================
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
-- Weight changes which type of transmission yields the best miles-per-gallon
+## Regression Models Course Project
 
-```{r, echo=FALSE}
+- Weight changes which type of transmission yields the best miles-per-gallon for `data("mtcars")`
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(plotly)
 data("mtcars")
 auto <- subset(mtcars, mtcars$am == 0)
@@ -25,6 +29,6 @@ plot_ly(auto, x = ~wt, y = ~mpg, name = 'auto',
               name = 'manual', mode = "lines")
 ```
 
-Thanks!
-========================================================
+## Thanks!
+- The End
 
