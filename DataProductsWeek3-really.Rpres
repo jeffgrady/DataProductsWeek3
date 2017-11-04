@@ -1,0 +1,40 @@
+Data Products Week 3
+========================================================
+author: Jeff Grady 
+date: 2017-11-03
+autosize: true
+
+Regression Models Course Project
+========================================================
+
+- Correlation matrix heatmap for `data("mtcars")`
+
+```{r, echo=FALSE}
+data("mtcars")
+auto <- subset(mtcars, mtcars$am == 0)
+manual <- subset(mtcars, mtcars$am == 1)
+library(corrplot)
+corData <- cor(mtcars)
+corrplot(corData, method="color", addCoef.col = "black")
+```
+
+Regression Models Course Project (cont'd)
+========================================================
+
+- Weight changes which type of transmission yields the best miles-per-gallon
+
+```{r, echo=FALSE}
+plot(mpg ~ wt, col = factor(mtcars$am), pch = mtcars$am + 16,
+     xlab = "Weight (wt)", ylab = "Miles per gallon (mpg)",
+     main = "Miles per gallon vs. Weight (by Transmission type)", mtcars)
+f1 <- lm(mpg ~ wt, auto)
+f2 <- lm(mpg ~ wt, manual)
+abline(f1, col = "black")
+abline(f2, col = "red")
+legend("topright", col = c("black", "red"), legend = c("Automatic", "Manual"),
+       pch = c(16, 17), title = "Transmission")
+```
+
+Thanks!
+========================================================
+
